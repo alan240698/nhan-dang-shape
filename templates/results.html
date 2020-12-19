@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drawing App - GraphicsLearn</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles_draw.css') }}" />
+        <script type="text/javascript" src="{{ url_for('static', filename='draw.js') }}"></script>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+              /* Loại bỏ lề mặc định của thanh điều hướng-dưới cùng và đường viền tròn */
+              .navbar {
+                margin-bottom: 0;
+                border-radius: 0;
+              }
+
+              /* Thêm màu nền xám và một số phần đệm vào chân trang */
+              footer {
+                background-color: #f2f2f2;
+                padding: 25px;
+              }
+
+            .carousel-inner img {
+                width: 100%; /* width to 100% */
+                margin: auto;
+                min-height:200px;
+            }
+
+            /* Ẩn văn bản băng chuyền khi màn hình rộng dưới 600 pixel */
+            @media (max-width: 600px) {
+              .carousel-caption {
+                display: none;
+              }
+            }
+
+            body{
+              background-color: lavender !important;
+              font-family: system-ui;
+            }
+
+            .container {
+              position: relative;
+              width: 100%;
+              overflow: hidden;
+              /* padding-top: 56.25%; /* 16:9 khung hình */ */
+            }
+
+
+
+            /* ---------------------------------------------------------NỘI DUNG CHƯƠNG TRÌNH DEMO-----------------------------------------------  */
+            /* Tạo ba cột bằng nhau */
+            .column {
+              float: left;
+              width: 33.33%;
+              padding: 15px;
+            }
+
+            /* xóa cột sau */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+
+            /* Bố cục đáp ứng - làm cho ba cột xếp chồng lên nhau thay vì cạnh nhau */
+            @media screen and (max-width:600px) {
+              .column {
+                width: 100%;
+              }
+            }
+
+
+            .wrap-main{
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            background: #fff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+
+                        <img src="https://raw.githubusercontent.com/luongthanhle/data-image/main/new1.png" alt="Image" />
+                    </div>
+
+                    <div class="item">
+                        <img src="https://raw.githubusercontent.com/luongthanhle/data-image/main/anh2.png" alt="Image" />
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <h1>Results</h1> -->
+        <div class="results">
+
+            {%if prediction%}
+            <h1 style="color: red;">It's {{ prediction }}</h1>
+            {%else%}
+            <h1 style="color: red;">Sorry</h1>
+            {%endif%}
+        </div>
+
+        <div class="wrap-main" <!-- SQUARE -->
+            {%if prediction=="square"%}
+            <div class="row">
+                <div class="column">
+                    <h2>Demo</h2>
+                    <iframe src="https://trinket.io/embed/python/b243336733?toggleCode=true" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="column" border="1">
+                  <h2>Hướng dẫn</h2>
+
+                  <div class="list-group">
+                      <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                      <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                      <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                      <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                  </div>
+                </div>
+
+                <div class="column">
+                    <h2>Chương trình của bạn</h2>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- PANDA -->
+            {%elif prediction=="panda" %}
+            <div class="row">
+                <div class="column">
+                    <h3>Demo</h3>
+                    <iframe src="https://trinket.io/embed/python/6d0d546688?outputOnly=true&start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen> </iframe>
+                </div>
+
+                <div class="column" border="1">
+                    <h2>Hướng dẫn</h2>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                        <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                        <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h3>Chương trình của bạn</h3>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- OCTAGON -->
+            {%elif prediction=="octagon" %}
+            <div class="row">
+                <div class="column">
+                    <h2>Demo</h2>
+                    <iframe src="https://trinket.io/embed/python/9a4ba4e9b5?outputOnly=true&start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="column" border="1">
+                    <h2>Hướng dẫn</h2>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                        <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                        <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Chương trình của bạn</h2>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- TRIANGLE -->
+            {%elif prediction=="triangle" %}
+            <div class="row">
+                <div class="column">
+                    <h2>Demo</h2>
+                    <iframe src="https://trinket.io/embed/python/8d8b6d331d?outputOnly=true&start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="column" border="1">
+                    <h2>Hướng dẫn</h2>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                        <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                        <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Chương trình của bạn</h2>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- CIRCLE -->
+            {%elif prediction=="circle" %}
+            <div class="row">
+                <div class="column">
+                    <h2>Demo</h2>
+                    <iframe src="https://trinket.io/embed/python/82585ccd47?outputOnly=true&start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="column" border="1">
+                    <h2>Hướng dẫn</h2>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                        <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                        <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Chương trình của bạn</h2>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- STAR -->
+            {%elif prediction=="star" %}
+            <div class="row">
+                <div class="column">
+                    <h2>Demo</h2>
+                    <iframe src="https://trinket.io/embed/python/8a9acee646?outputOnly=true&start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="column" border="1">
+                    <h2>Hướng dẫn</h2>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                        <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                        <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Chương trình của bạn</h2>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- HEXAGON -->
+            {%elif prediction=="hexagon" %}
+            <div class="row">
+                <div class="column">
+                    <h2>Demo</h2>
+                    <iframe src="https://trinket.io/embed/python/44ab8bf607?outputOnly=true&start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="column" border="1">
+                    <h2>Hướng dẫn</h2>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                        <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                        <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Chương trình của bạn</h2>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- SMILEYFACE -->
+            {%elif prediction=="smileyface" %}
+            <div class="row">
+                <div class="column">
+                    <h2>Demo</h2>
+                    <iframe src="https://trinket.io/embed/python/715b320552?outputOnly=true&start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="column" border="1">
+                    <h2>Hướng dẫn</h2>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                        <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                        <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Chương trình của bạn</h2>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- RAINBOW -->
+            {%elif prediction=="rainbow" %}
+            <div class="row">
+                <div class="column">
+                    <h2>Demo</h2>
+                    <iframe src="https://trinket.io/embed/python/679a5a4fae?outputOnly=true&start=result" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="column" border="1">
+                    <h2>Hướng dẫn</h2>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">- Cài đặt thư viện đồ họa con rùa</a>
+                        <a href="#" class="list-group-item list-group-item-action">- Tạo đối tượng rùa </a>
+                        <a href="#" class="list-group-item list-group-item-action">- Xác định phương pháp vẽ vòng trong màu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Fourth item</a>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2>Chương trình của bạn</h2>
+                    <iframe src="https://trinket.io/embed/python/85bba81acb" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            {%endif%}
+        </div>
+    </body>
+</html>
